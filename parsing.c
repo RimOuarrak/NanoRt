@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:38:57 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/08/27 17:44:45 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/08/27 23:10:36 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int ac, char **av)
 			return (0);
 		}
 		i = 0;
-		check_elements(file_tab);
+		supervisor(file_tab);
 		// while (file_tab[i])
 		// {
 		// 	printf("%s", file_tab[i]);

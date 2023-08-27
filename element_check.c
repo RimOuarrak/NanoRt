@@ -5,74 +5,85 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 16:39:49 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/08/27 19:33:04 by rimouarrak       ###   ########.fr       */
+/*   Created: 2023/08/27 22:51:16 by rimouarrak        #+#    #+#             */
+/*   Updated: 2023/08/28 00:32:25 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/parsing.h"
+#include "includes/elements.h"
 
-static void elem_dup_error(int cptA, int cptC, int cptL)
-{
-    if (cptA == 0 || cptC == 0 || cptL == 0)
-    {
-        printf("Error\nThere is a missing element\n");
-        exit (0);
-    }
-    if (cptA > 1 || cptC > 1 || cptL > 1)
-    {
-        printf("Error\nElements that start with an uppercase letter can only be declared once in the scene.\n");
-        exit (0);
-    }
-}
-
-void check_elem_dup(char **tab)
-{
-    int cptA;
-    int cptC;
-    int cptL;
-
-    cptA = 0;
-    cptC = 0;
-    cptL = 0;
-    while (*tab)
-    {
-        if (**tab == 'A')
-            cptA++;
-        else if (**tab == 'C')
-            cptC++;
-        else if (**tab == 'L')
-            cptL++;
-        tab++;
-    }
-    elem_dup_error(cptA, cptC, cptL);
-}
-static int	make_set(char *str)
+int	param_num(char *str)
 {
 	int	i;
 	int	cpt;
-	char	**set;
-
+	
 	i = 0;
 	cpt = 0;
-	set = malloc((6 + 1)* sizeof(char));
-	set[0] = ft_strdup("A");
-	set[1] = ft_strdup("C");
-	set[2] = ft_strdup("L");
-	set[3] = ft_strdup("pl");
-	set[4] = ft_strdup("sp");
-	set[5] = ft_strdup("cy");
-	set[6] = NULL;
-	while (set[i])
+	while (str[i])
 	{
-		if (!ft_strcmp(str, set[i]))
+		if (str[i] == ' ' || str[i] == '\t')
 			cpt++;
 		i++;
 	}
 	return (cpt);
 }
 
-void	check_imposter(char **tab)
+void    check_a(char *str)
+{
+    if (param_num(str) != 2)
+    {
+        printf("Erros\nAnomalie in ambient light (A) parameters\n");
+        exit (0);
+    }
+}
+
+void    check_c(char *str)
+{
+    if (param_num(str) != 3)
+    {
+        printf("Erros\nAnomalie in Cameras (C) parameters\n");
+        exit (0);
+    }
+}
+
+void    check_l(char *str)
+{
+    if (param_num(str) != 3)
+    {
+        printf("Erros\nAnomalie in Lights (L) parameters\n");
+        exit (0);
+    }
+}
+
+void    check_pl(char *str)
+{
+    if (param_num(str) != 3)
+    {
+        printf("Erros\nAnomalie in Planes (pl) parameters\n");
+        exit (0);
+    }
+}
+
+void    check_sp(char *str)
+{
+    if (param_num(str) != 3)
+    {
+        printf("Erros\nAnomalie in Spheres (sp) parameters\n");
+        exit (0);
+    }
+}
+
+void    check_cy(char *str)
+{
+    if (param_num(str) != 5)
+    {
+        printf("Erros\nAnomalie in Cylinders (cy) parameters\n");
+        exit (0);
+    }
+}
+
+void	check_elements(char **tab)
 {
 	int	i;
 	int	j;
@@ -81,19 +92,19 @@ void	check_imposter(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		str = ft_split(tab[i], ' ');
-		make_set(str[0]);
-		if (!make_set(str[0]))
-		{
-			printf("Error\nThere is an unknown element\n");
-			exit (0);
-		}
+		if (!ft_strncmp(tab[i], "A", 1))
+			check_a(tab[i]);
+		else if (!ft_strncmp(tab[i], "C", 1))
+			check_c(tab[i]);
+		else if (!ft_strncmp(tab[i], "L", 1))
+			check_l(tab[i]);
+		else if (!ft_strncmp(tab[i], "pl", 2))
+			check_pl(tab[i]);
+		else if (!ft_strncmp(tab[i], "sp", 2))
+			check_sp(tab[i]);
+		else if (!ft_strncmp(tab[i], "cy", 2))
+			check_cy(tab[i]);
 		// free_split(str);
 		i++;
 	}
-}
-void check_elements(char	**tab)
-{
-	check_imposter(tab);
-    check_elem_dup(tab);
 }

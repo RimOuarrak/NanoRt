@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:40:20 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/08/27 19:28:07 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/08/28 00:19:18 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,21 @@
 # include "../libft/libft.h"
 #include "../gnl/get_next_line.h"
 
-typedef struct s_info
+typedef struct s_lst
 {
-    char    id;
-    int     nl;
-    
-} t_info;
+	void			*content;
+	struct s_list	*next;
+}   t_lst;
+
+typedef struct s_scene {
+	t_list	*cameras;
+	t_list	*lights;
+	t_list	*planes;
+	t_list	*triangles;
+	t_list	*spheres;
+	t_list	*squares;
+	t_list	*cylinders;
+}	t_scene;
 
 char	*get_next_line(int fd);
 void	free_split(char **split);
@@ -32,6 +41,8 @@ int	nospace_strlen(char *str);
 char	*rm_space(char *str);
 char	**read_file(char *file);
 void    check_elem_dup(char **tab);
-void check_elements(char	**tab);
+void	check_elements(char **tab);
+int	param_num(char *str);
+void supervisor(char	**tab);
 
 #endif

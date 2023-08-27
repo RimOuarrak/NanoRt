@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:38:20 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/08/27 16:23:00 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/08/27 23:37:35 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ typedef struct s_cylinder {
 	double		height;
 	t_trgb		color;
 }	t_cylinder;
+
+void    check_a(char *str);
 
 #endif
