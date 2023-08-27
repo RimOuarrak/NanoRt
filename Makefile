@@ -6,14 +6,14 @@
 #    By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/26 01:37:23 by rimouarrak        #+#    #+#              #
-#    Updated: 2023/08/27 17:25:04 by rimouarrak       ###   ########.fr        #
+#    Updated: 2023/08/27 19:32:30 by rimouarrak       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
 SRCS = parsing.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c utils_pars.c\
-		element_check.c
+		element_check.c utils_gnrl.c
 
 NAME = nanort
 LIBFT = libft.a
@@ -31,6 +31,7 @@ $(LIBFT):
 	mv $(LIBFT_DIR)$(LIBFT) .
 
 clean:
+		rm -rf $ libft.a
 		rm -rf $(OBJS)
 		rm -rf $(BOBJS)
 		$(MAKE) -C $(LIBFT_DIR) clean
