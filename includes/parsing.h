@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:40:20 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/08/28 00:19:18 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/02 03:10:14 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <fcntl.h>
 # include "../libft/libft.h"
 #include "../gnl/get_next_line.h"
+#include "elements.h"
+# include "vector.h"
+# include "color.h"
 
 typedef struct s_lst
 {
@@ -23,18 +26,21 @@ typedef struct s_lst
 	struct s_list	*next;
 }   t_lst;
 
-typedef struct s_scene {
-	t_list	*cameras;
-	t_list	*lights;
-	t_list	*planes;
-	t_list	*triangles;
-	t_list	*spheres;
-	t_list	*squares;
-	t_list	*cylinders;
+typedef struct s_scene
+{
+	t_ambient_light	*a_light;
+	t_camera		*cameras;
+	t_light			*lights;
+	t_plane			*planes;
+	// t_list	*triangles;
+	t_sphere		*spheres;
+	// t_list	*squares;
+	t_cylinder		*cylinders;
 }	t_scene;
 
 char	*get_next_line(int fd);
 void	free_split(char **split);
+double str_to_double(const char *str);
 int	ft_strcmp(const char *s1, const char *s2);
 int	n_lines(int fd);
 int	nospace_strlen(char *str);

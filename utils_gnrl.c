@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 18:52:13 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/08/27 19:32:11 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/02 04:06:20 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,46 @@ void	free_split(char **split)
 	while (*split)
 		free(*split++);
 	free(tmp);
+}
+
+double str_to_double(const char *str)
+{
+    double result;
+    double fract;
+    int flag;
+    int sign;
+
+	result = 0.0; 
+	fract = 0.1; 
+	sign = 1;
+	flag = 0;
+    if (*str == '-')
+	{
+        sign = -1;
+        str++;
+    }
+    while (*str != '\0')
+	{
+        if (*str >= '0' && *str <= '9')
+		{
+            if (flag)
+			{
+                result = result + (*str - '0') * fract;
+                fract /= 10;
+            }
+			else
+                result = result * 10 + (*str - '0'); 
+        }
+		else if (*str == '.')
+            flag = 1;
+		else
+		{
+			printf("Error\nAn parameter must be double check it!\n");
+			exit(0);
+        }
+        str++;
+    }
+    return (result * sign);
 }
 
 // void	free_split(char **split)

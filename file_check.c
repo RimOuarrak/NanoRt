@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 16:39:49 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/08/27 23:03:49 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/01 23:44:18 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	check_imposter(char **tab)
 	while (tab[i])
 	{
 		str = ft_split(tab[i], ' ');
+		// i think the line bellow is useless but leave it for now
 		make_set(str[0]);
 		if (!make_set(str[0]))
 		{
@@ -92,6 +93,7 @@ void	check_imposter(char **tab)
 		i++;
 	}
 }
+
 void supervisor(char	**tab)
 {
 	check_imposter(tab);
