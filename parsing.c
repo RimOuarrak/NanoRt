@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:38:57 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/02 04:03:19 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/04 00:52:15 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,45 @@ void	fill_a(char	*str, t_scene *scene)
 	//FREE SPLITS
 }
 
+void	fill_c(char	*str, t_scene *scene)
+{
+	char	**tab;
+	char	**pos;
+	char	**ort;
+	
+	tab = ft_split(str, ' ');
+	pos = ft_split(tab[1], ',');
+	scene->cameras->position.x = ft_atoi(pos[0]);
+	scene->cameras->position.y = ft_atoi(pos[1]);
+	scene->cameras->position.z = ft_atoi(pos[2]);
+	ort = ft_split(tab[2], ',');
+	scene->cameras->orientation.x = ft_atoi(ort[0]);
+	scene->cameras->orientation.y = ft_atoi(ort[1]);
+	scene->cameras->orientation.z = ft_atoi(ort[2]);
+	scene->cameras->fov = ft_atoi(tab[3]);
+	//FREE SPLITS
+}
+
+void	fill_l(char	*str, t_scene *scene)
+{
+	char	**tab;
+	char	**pos;
+	char	**rgb;
+	
+	tab = ft_split(str, ' ');
+	pos = ft_split(tab[1], ',');
+	scene->lights->position.x = ft_atoi(pos[0]);
+	scene->lights->position.y = ft_atoi(pos[1]);
+	scene->lights->position.z = ft_atoi(pos[2]);
+	scene->lights->ratio = str_to_double(tab[2]);
+	rgb = ft_split(tab[3], ',');
+	scene->lights->color.r = ft_atoi(rgb[0]);
+	scene->lights->color.g = ft_atoi(rgb[1]);
+	scene->lights->color.b = ft_atoi(rgb[2]);
+
+	//FREE SPLITS
+}
+
 void	fill_elm(char	**tab, t_scene *scene)
 {
 	int	i;
@@ -36,9 +75,9 @@ void	fill_elm(char	**tab, t_scene *scene)
 		if (!ft_strncmp(tab[i], "A", 1))
 				fill_a(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "C", 1))
-				printf("%s", tab[i]);
+				fill_c(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "L", 1))
-				printf("%s", tab[i]);
+				fill_l(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "pl", 2))
 				printf("%s", tab[i]);
 		else if (!ft_strncmp(tab[i], "sp", 2))
