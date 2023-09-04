@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:38:57 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/04 00:52:15 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/04 03:27:26 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	fill_c(char	*str, t_scene *scene)
 	
 	tab = ft_split(str, ' ');
 	pos = ft_split(tab[1], ',');
-	scene->cameras->position.x = ft_atoi(pos[0]);
-	scene->cameras->position.y = ft_atoi(pos[1]);
-	scene->cameras->position.z = ft_atoi(pos[2]);
+	scene->cameras->position.x = str_to_double(pos[0]);
+	scene->cameras->position.y = str_to_double(pos[1]);
+	scene->cameras->position.z = str_to_double(pos[2]);
 	ort = ft_split(tab[2], ',');
-	scene->cameras->orientation.x = ft_atoi(ort[0]);
-	scene->cameras->orientation.y = ft_atoi(ort[1]);
-	scene->cameras->orientation.z = ft_atoi(ort[2]);
+	scene->cameras->orientation.x = str_to_double(ort[0]);
+	scene->cameras->orientation.y = str_to_double(ort[1]);
+	scene->cameras->orientation.z = str_to_double(ort[2]);
 	scene->cameras->fov = ft_atoi(tab[3]);
 	//FREE SPLITS
 }
@@ -53,9 +53,9 @@ void	fill_l(char	*str, t_scene *scene)
 	
 	tab = ft_split(str, ' ');
 	pos = ft_split(tab[1], ',');
-	scene->lights->position.x = ft_atoi(pos[0]);
-	scene->lights->position.y = ft_atoi(pos[1]);
-	scene->lights->position.z = ft_atoi(pos[2]);
+	scene->lights->position.x = str_to_double(pos[0]);
+	scene->lights->position.y = str_to_double(pos[1]);
+	scene->lights->position.z = str_to_double(pos[2]);
 	scene->lights->ratio = str_to_double(tab[2]);
 	rgb = ft_split(tab[3], ',');
 	scene->lights->color.r = ft_atoi(rgb[0]);
@@ -63,6 +63,20 @@ void	fill_l(char	*str, t_scene *scene)
 	scene->lights->color.b = ft_atoi(rgb[2]);
 
 	//FREE SPLITS
+}
+void	fill_pl(char	*str, t_scene *scene)
+{
+	t_plane	*plane;
+
+	plane = pl_new(str);
+	
+	if(!scene->planes->flag)
+	{
+		scene->planes = plane;
+		// scene->planes->flag = 1;
+	}
+	else
+		pl_add_back(&scene->planes, plane);
 }
 
 void	fill_elm(char	**tab, t_scene *scene)
@@ -79,7 +93,7 @@ void	fill_elm(char	**tab, t_scene *scene)
 		else if (!ft_strncmp(tab[i], "L", 1))
 				fill_l(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "pl", 2))
-				printf("%s", tab[i]);
+				fill_pl(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "sp", 2))
 				printf("%s", tab[i]);
 		else if (!ft_strncmp(tab[i], "cy", 2))
@@ -115,6 +129,9 @@ int main(int ac, char **av)
 		scene = ft_calloc(1 ,sizeof(t_scene));
 		init_struct(scene);
 		fill_elm(file_tab, scene);
+		// printf("res ,, %f\n", scene->planes->normal.y);
+		// printf("next ,, %d\n", scene->planes->next->color.r);
+		// printf("%p\n", scene->planes->next->next);
 	}
     return(0);
 }

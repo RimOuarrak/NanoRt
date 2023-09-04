@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:40:20 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/02 03:10:14 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/04 01:18:52 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 #include "elements.h"
 # include "vector.h"
 # include "color.h"
-
-typedef struct s_lst
-{
-	void			*content;
-	struct s_list	*next;
-}   t_lst;
 
 typedef struct s_scene
 {

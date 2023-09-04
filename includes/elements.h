@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:38:20 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/09/01 23:53:58 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/04 03:19:16 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,15 @@ typedef struct s_sphere {
 	t_vector	position;
 	double		diameter;
 	t_trgb		color;
+	struct s_sphere	*next;
 }	t_sphere;
 
 typedef struct s_plane {
 	t_vector	position;
 	t_vector	normal;
 	t_trgb		color;
+	int			flag;
+	struct s_plane	*next;
 }	t_plane;
 
 typedef struct s_cylinder {
@@ -52,9 +55,12 @@ typedef struct s_cylinder {
 	double		diameter;
 	double		height;
 	t_trgb		color;
+	struct s_cylinder	*next;
 }	t_cylinder;
 
 // i think i will remove this later
 void    check_a(char *str);
-
+t_plane	*pl_last(t_plane *lst);
+t_plane	*pl_new(char	*str);
+void	pl_add_back(t_plane **lst, t_plane *new);
 #endif
