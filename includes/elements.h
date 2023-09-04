@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:38:20 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/09/04 03:19:16 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/04 03:39:57 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_sphere {
 	t_vector	position;
 	double		diameter;
 	t_trgb		color;
+	int			flag;
 	struct s_sphere	*next;
 }	t_sphere;
 
@@ -63,4 +64,8 @@ void    check_a(char *str);
 t_plane	*pl_last(t_plane *lst);
 t_plane	*pl_new(char	*str);
 void	pl_add_back(t_plane **lst, t_plane *new);
+t_sphere	*sp_last(t_sphere *lst);
+t_sphere	*sp_new(char	*str);
+void	sp_add_back(t_sphere **lst, t_sphere *new);
+
 #endif

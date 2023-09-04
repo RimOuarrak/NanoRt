@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_plane.c                                       :+:      :+:    :+:   */
+/*   fill_sphere.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 01:19:20 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/04 03:31:51 by rimouarrak       ###   ########.fr       */
+/*   Created: 2023/09/04 03:31:28 by rimouarrak        #+#    #+#             */
+/*   Updated: 2023/09/04 03:35:29 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/parsing.h"
 
-t_plane	*pl_last(t_plane *lst)
+t_sphere	*sp_last(t_sphere *lst)
 {
-	t_plane	*l;
+	t_sphere	*l;
 
 	if (!lst)
 		return (NULL);
@@ -26,15 +26,14 @@ t_plane	*pl_last(t_plane *lst)
 	return (l);
 }
 
-t_plane	*pl_new(char	*str)
+t_sphere	*sp_new(char	*str)
 {
-	t_plane	*l;
+	t_sphere	*l;
 	char	**tab;
 	char	**pos;
 	char	**rgb;
-	char	**ort;
 
-	l = malloc (sizeof(t_plane));
+	l = malloc (sizeof(t_sphere));
 	if (!l)
 		return (NULL);
 	tab = ft_split(str, ' ');
@@ -42,10 +41,7 @@ t_plane	*pl_new(char	*str)
 	l->position.x = str_to_double(pos[0]);
 	l->position.y = str_to_double(pos[1]);
 	l->position.z = str_to_double(pos[2]);
-	ort = ft_split(tab[2], ',');
-	l->normal.x = str_to_double(ort[0]);
-	l->normal.y = str_to_double(ort[1]);
-	l->normal.z = str_to_double(ort[2]);
+    l->diameter = str_to_double(tab[2]);
 	rgb = ft_split(tab[3], ',');
 	l->color.r = ft_atoi(rgb[0]);
 	l->color.g = ft_atoi(rgb[1]);
@@ -55,16 +51,16 @@ t_plane	*pl_new(char	*str)
 	return (l);
 }
 
-void	pl_add_back(t_plane **lst, t_plane *new)
+void	sp_add_back(t_sphere **lst, t_sphere *new)
 {
-	t_plane	*l;
+	t_sphere	*l;
 
 	if (!*lst)
 		*lst = new;
 	else
 	{
 
-		l = pl_last(*lst);
+		l = sp_last(*lst);
 		l -> next = new;
 	}
 }
