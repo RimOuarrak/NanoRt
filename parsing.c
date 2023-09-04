@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:38:57 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/04 03:42:22 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/04 03:52:12 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,21 @@ void	fill_sp(char	*str, t_scene *scene)
 		sp_add_back(&scene->spheres, sphere);
 }
 
+void	fill_cy(char	*str, t_scene *scene)
+{
+	t_cylinder	*cylinder;
+
+	cylinder = cy_new(str);
+	
+	if(!scene->cylinders->flag)
+	{
+		scene->cylinders = cylinder;
+		// scene->t_cylinders->flag = 1;
+	}
+	else
+		cy_add_back(&scene->cylinders, cylinder);
+}
+
 void	fill_elm(char	**tab, t_scene *scene)
 {
 	int	i;
@@ -112,7 +127,7 @@ void	fill_elm(char	**tab, t_scene *scene)
 		else if (!ft_strncmp(tab[i], "sp", 2))
 				fill_sp(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "cy", 2))
-				printf("%s", tab[i]);
+				fill_cy(tab[i], scene);
 		// free_split(str);
 		i++;
 	}
@@ -144,7 +159,8 @@ int main(int ac, char **av)
 		scene = ft_calloc(1 ,sizeof(t_scene));
 		init_struct(scene);
 		fill_elm(file_tab, scene);
-		// printf("res ,, %f\n", scene->spheres->diameter);
+		// printf("res ,, %f\n", scene->cylinders->diameter);
+		// printf("res ,, %f\n", scene->cylinders->next->diameter);
 		// printf("res ,, %p\n", scene->spheres->next->next);
 		// printf("next ,, %d\n", scene->planes->next->color.r);
 		// printf("%p\n", scene->planes->next->next);

@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 21:38:20 by aminebeihaq       #+#    #+#             */
-/*   Updated: 2023/09/04 03:39:57 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/04 03:46:25 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_cylinder {
 	double		diameter;
 	double		height;
 	t_trgb		color;
+	int			flag;
 	struct s_cylinder	*next;
 }	t_cylinder;
 
@@ -67,5 +68,8 @@ void	pl_add_back(t_plane **lst, t_plane *new);
 t_sphere	*sp_last(t_sphere *lst);
 t_sphere	*sp_new(char	*str);
 void	sp_add_back(t_sphere **lst, t_sphere *new);
+t_cylinder	*cy_last(t_cylinder *lst);
+t_cylinder	*cy_new(char	*str);
+void	cy_add_back(t_cylinder **lst, t_cylinder *new);
 
 #endif

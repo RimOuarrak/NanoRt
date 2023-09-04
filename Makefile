@@ -6,14 +6,15 @@
 #    By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/26 01:37:23 by rimouarrak        #+#    #+#              #
-#    Updated: 2023/09/04 03:39:26 by rimouarrak       ###   ########.fr        #
+#    Updated: 2023/09/04 03:45:34 by rimouarrak       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
 SRCS = parsing.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c utils_pars.c\
-		file_check.c element_check.c utils_gnrl.c fill_plane.c fill_sphere.c
+		file_check.c element_check.c utils_gnrl.c fill_plane.c fill_sphere.c\
+		fill_cylinder.c
 
 NAME = nanort
 LIBFT = libft.a
