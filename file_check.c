@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 16:39:49 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/01 23:44:18 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/09 16:17:28 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	make_set(char *str)
 
 	i = 0;
 	cpt = 0;
-	set = malloc((6 + 1)* sizeof(char));
+	set = ft_calloc(7, sizeof(char*));
 	set[0] = ft_strdup("A");
 	set[1] = ft_strdup("C");
 	set[2] = ft_strdup("L");
@@ -69,6 +69,7 @@ static int	make_set(char *str)
 			cpt++;
 		i++;
 	}
+	free_split(set);
 	return (cpt);
 }
 
@@ -82,15 +83,14 @@ void	check_imposter(char **tab)
 	while (tab[i])
 	{
 		str = ft_split(tab[i], ' ');
-		// i think the line bellow is useless but leave it for now
-		make_set(str[0]);
 		if (!make_set(str[0]))
 		{
 			printf("Error\nThere is an unknown element\n");
+			free_split(str);
 			exit (0);
 		}
-		// free_split(str);
 		i++;
+		free_split(str);
 	}
 }
 

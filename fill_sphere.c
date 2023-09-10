@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 03:31:28 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/04 03:35:29 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/09 16:19:07 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ t_sphere	*sp_new(char	*str)
 	l->color.g = ft_atoi(rgb[1]);
 	l->color.b = ft_atoi(rgb[2]);
 	l -> next = NULL;
-	//FREE SPLITS
+	free_split(tab);
+	free_split(rgb);
+	free_split(pos);
 	return (l);
 }
 

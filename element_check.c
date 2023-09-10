@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 22:51:16 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/08/31 00:59:12 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/09 16:16:30 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	check_elements(char **tab)
 {
 	int	i;
 	int	j;
-	char	**str;
 
 	i = 0;
 	while (tab[i])
@@ -104,7 +103,6 @@ void	check_elements(char **tab)
 			check_sp(tab[i]);
 		else if (!ft_strncmp(tab[i], "cy", 2))
 			check_cy(tab[i]);
-		// free_split(str);
 		i++;
 	}
 }

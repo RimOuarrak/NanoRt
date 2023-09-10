@@ -6,7 +6,7 @@
 #    By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/26 01:37:23 by rimouarrak        #+#    #+#              #
-#    Updated: 2023/09/04 03:45:34 by rimouarrak       ###   ########.fr        #
+#    Updated: 2023/09/08 14:19:07 by rimouarrak       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-		cc -fsanitize=address $(OBJS) $(LIBFT) -o $(NAME)
+		cc -Wall -Wextra -Werror $(OBJS) $(LIBFT) -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) bonus -C $(LIBFT_DIR)

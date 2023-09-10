@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:38:57 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/04 03:52:12 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/09 16:24:15 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	fill_a(char	*str, t_scene *scene)
 	scene->a_light->color.r = ft_atoi(rgb[0]);
 	scene->a_light->color.g = ft_atoi(rgb[1]);
 	scene->a_light->color.b = ft_atoi(rgb[2]);
-	//FREE SPLITS
+	free_split(tab);
+	free_split(rgb);
 }
 
 void	fill_c(char	*str, t_scene *scene)
@@ -42,7 +43,9 @@ void	fill_c(char	*str, t_scene *scene)
 	scene->cameras->orientation.y = str_to_double(ort[1]);
 	scene->cameras->orientation.z = str_to_double(ort[2]);
 	scene->cameras->fov = ft_atoi(tab[3]);
-	//FREE SPLITS
+	free_split(tab);
+	free_split(pos);
+	free_split(ort);
 }
 
 void	fill_l(char	*str, t_scene *scene)
@@ -61,8 +64,9 @@ void	fill_l(char	*str, t_scene *scene)
 	scene->lights->color.r = ft_atoi(rgb[0]);
 	scene->lights->color.g = ft_atoi(rgb[1]);
 	scene->lights->color.b = ft_atoi(rgb[2]);
-
-	//FREE SPLITS
+	free_split(tab);
+	free_split(rgb);
+	free_split(pos);
 }
 void	fill_pl(char	*str, t_scene *scene)
 {
@@ -128,7 +132,6 @@ void	fill_elm(char	**tab, t_scene *scene)
 				fill_sp(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "cy", 2))
 				fill_cy(tab[i], scene);
-		// free_split(str);
 		i++;
 	}
 }
@@ -152,13 +155,14 @@ int main(int ac, char **av)
 		file_tab = read_file(av[1]);
 		if (!file_tab)
 		{
-			printf("Error\nThe .rt file is empty\n");
+			printf("Error\nThe .rt file is empty or unexisting\n");
 			return (0);
 		}
 		supervisor(file_tab);
 		scene = ft_calloc(1 ,sizeof(t_scene));
 		init_struct(scene);
 		fill_elm(file_tab, scene);
+		system("leaks nanort");
 		// printf("res ,, %f\n", scene->cylinders->diameter);
 		// printf("res ,, %f\n", scene->cylinders->next->diameter);
 		// printf("res ,, %p\n", scene->spheres->next->next);
