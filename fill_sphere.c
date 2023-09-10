@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 03:31:28 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/09 16:19:07 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/10 19:39:19 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ t_sphere	*sp_last(t_sphere *lst)
 t_sphere	*sp_new(char	*str)
 {
 	t_sphere	*l;
-	char	**tab;
-	char	**pos;
-	char	**rgb;
+	char		**tab;
+	char		**pos;
+	char		**rgb;
 
 	l = malloc (sizeof(t_sphere));
 	if (!l)
@@ -41,7 +41,7 @@ t_sphere	*sp_new(char	*str)
 	l->position.x = str_to_double(pos[0]);
 	l->position.y = str_to_double(pos[1]);
 	l->position.z = str_to_double(pos[2]);
-    l->diameter = str_to_double(tab[2]);
+	l->diameter = str_to_double(tab[2]);
 	rgb = ft_split(tab[3], ',');
 	l->color.r = ft_atoi(rgb[0]);
 	l->color.g = ft_atoi(rgb[1]);
@@ -61,7 +61,6 @@ void	sp_add_back(t_sphere **lst, t_sphere *new)
 		*lst = new;
 	else
 	{
-
 		l = sp_last(*lst);
 		l -> next = new;
 	}

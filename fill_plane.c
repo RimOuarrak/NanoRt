@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 01:19:20 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/09 16:18:42 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/10 19:38:56 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	pl_add_back(t_plane **lst, t_plane *new)
 		*lst = new;
 	else
 	{
-
 		l = pl_last(*lst);
 		l -> next = new;
 	}

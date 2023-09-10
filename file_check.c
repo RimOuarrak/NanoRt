@@ -6,56 +6,58 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 16:39:49 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/09 16:17:28 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/10 19:38:11 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/parsing.h"
 
-static void elem_dup_error(int cptA, int cptC, int cptL)
+static void	elem_dup_error(int cptA, int cptC, int cptL)
 {
-    if (cptA == 0 || cptC == 0 || cptL == 0)
-    {
-        printf("Error\nThere is a missing element\n");
-        exit (0);
-    }
-    if (cptA > 1 || cptC > 1 || cptL > 1)
-    {
-        printf("Error\nElements that start with an uppercase letter can only be declared once in the scene.\n");
-        exit (0);
-    }
+	if (cptA == 0 || cptC == 0 || cptL == 0)
+	{
+		printf("Error\nThere is a missing element\n");
+		exit (0);
+	}
+	if (cptA > 1 || cptC > 1 || cptL > 1)
+	{
+		printf("Error\nElements that start with an uppercase"
+			"letter can only be declared once in the scene.\n");
+		exit (0);
+	}
 }
 
-void check_elem_dup(char **tab)
+void	check_elem_dup(char **tab)
 {
-    int cptA;
-    int cptC;
-    int cptL;
+	int	cpta;
+	int	cptc;
+	int	cptl;
 
-    cptA = 0;
-    cptC = 0;
-    cptL = 0;
-    while (*tab)
-    {
-        if (**tab == 'A')
-            cptA++;
-        else if (**tab == 'C')
-            cptC++;
-        else if (**tab == 'L')
-            cptL++;
-        tab++;
-    }
-    elem_dup_error(cptA, cptC, cptL);
+	cpta = 0;
+	cptc = 0;
+	cptl = 0;
+	while (*tab)
+	{
+		if (**tab == 'A')
+			cpta++;
+		else if (**tab == 'C')
+			cptc++;
+		else if (**tab == 'L')
+			cptl++;
+		tab++;
+	}
+	elem_dup_error(cpta, cptc, cptl);
 }
+
 static int	make_set(char *str)
 {
-	int	i;
-	int	cpt;
+	int		i;
+	int		cpt;
 	char	**set;
 
 	i = 0;
 	cpt = 0;
-	set = ft_calloc(7, sizeof(char*));
+	set = ft_calloc(7, sizeof(char *));
 	set[0] = ft_strdup("A");
 	set[1] = ft_strdup("C");
 	set[2] = ft_strdup("L");
@@ -75,8 +77,8 @@ static int	make_set(char *str)
 
 void	check_imposter(char **tab)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**str;
 
 	i = 0;
@@ -94,9 +96,9 @@ void	check_imposter(char **tab)
 	}
 }
 
-void supervisor(char	**tab)
+void	supervisor(char	**tab)
 {
 	check_imposter(tab);
-    check_elem_dup(tab);
+	check_elem_dup(tab);
 	check_elements(tab);
 }

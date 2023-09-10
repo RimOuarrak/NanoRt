@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 03:43:36 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/09 16:18:16 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/10 19:38:47 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ t_cylinder	*cy_last(t_cylinder *lst)
 t_cylinder	*cy_new(char	*str)
 {
 	t_cylinder	*l;
-	char	**tab;
-	char	**pos;
-	char	**rgb;
-	char	**ort;
+	char		**tab;
+	char		**pos;
+	char		**rgb;
+	char		**ort;
 
 	l = malloc (sizeof(t_cylinder));
 	if (!l)
@@ -46,8 +46,8 @@ t_cylinder	*cy_new(char	*str)
 	l->normal.x = str_to_double(ort[0]);
 	l->normal.y = str_to_double(ort[1]);
 	l->normal.z = str_to_double(ort[2]);
-    l->diameter = str_to_double(tab[3]);
-    l->height = str_to_double(tab[4]);
+	l->diameter = str_to_double(tab[3]);
+	l->height = str_to_double(tab[4]);
 	rgb = ft_split(tab[5], ',');
 	l->color.r = ft_atoi(rgb[0]);
 	l->color.g = ft_atoi(rgb[1]);
@@ -68,7 +68,6 @@ void	cy_add_back(t_cylinder **lst, t_cylinder *new)
 		*lst = new;
 	else
 	{
-
 		l = cy_last(*lst);
 		l -> next = new;
 	}

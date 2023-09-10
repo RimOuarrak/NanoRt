@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 22:51:16 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/09 16:16:30 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/10 19:34:45 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	param_num(char *str)
 {
 	int	i;
 	int	cpt;
-	
+
 	i = 0;
 	cpt = 0;
 	while (str[i])
@@ -29,58 +29,58 @@ int	param_num(char *str)
 	return (cpt);
 }
 
-void    check_a(char *str)
+void	check_a(char *str)
 {
-    if (param_num(str) != 2)
-    {
-        printf("Erros\nAnomalie in ambient light (A) parameters\n");
-        exit (0);
-    }
+	if (param_num(str) != 2)
+	{
+		printf("Erros\nAnomalie in ambient light (A) parameters\n");
+		exit (0);
+	}
 }
 
-void    check_c(char *str)
+void	check_c(char *str)
 {
-    if (param_num(str) != 3)
-    {
-        printf("Erros\nAnomalie in Cameras (C) parameters\n");
-        exit (0);
-    }
+	if (param_num(str) != 3)
+	{
+		printf("Erros\nAnomalie in Cameras (C) parameters\n");
+		exit (0);
+	}
 }
 
-void    check_l(char *str)
+void	check_l(char *str)
 {
-    if (param_num(str) != 3)
-    {
-        printf("Erros\nAnomalie in Lights (L) parameters\n");
-        exit (0);
-    }
+	if (param_num(str) != 3)
+	{
+		printf("Erros\nAnomalie in Lights (L) parameters\n");
+		exit (0);
+	}
 }
 
-void    check_pl(char *str)
+void	check_pl(char *str)
 {
-    if (param_num(str) != 3)
-    {
-        printf("Erros\nAnomalie in Planes (pl) parameters\n");
-        exit (0);
-    }
+	if (param_num(str) != 3)
+	{
+		printf("Erros\nAnomalie in Planes (pl) parameters\n");
+		exit (0);
+	}
 }
 
-void    check_sp(char *str)
+void	check_sp(char *str)
 {
-    if (param_num(str) != 3)
-    {
-        printf("Erros\nAnomalie in Spheres (sp) parameters\n");
-        exit (0);
-    }
+	if (param_num(str) != 3)
+	{
+		printf("Erros\nAnomalie in Spheres (sp) parameters\n");
+		exit (0);
+	}
 }
 
-void    check_cy(char *str)
+void	check_cy(char *str)
 {
-    if (param_num(str) != 5)
-    {
-        printf("Erros\nAnomalie in Cylinders (cy) parameters\n");
-        exit (0);
-    }
+	if (param_num(str) != 5)
+	{
+		printf("Erros\nAnomalie in Cylinders (cy) parameters\n");
+		exit (0);
+	}
 }
 
 void	check_elements(char **tab)

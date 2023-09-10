@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rouarrak <rouarrak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 02:08:20 by rouarrak          #+#    #+#             */
-/*   Updated: 2022/10/18 00:02:43 by rouarrak         ###   ########.fr       */
+/*   Updated: 2023/09/10 19:50:09 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 				return ((char *)&haystack[i]);
 			j++;
 		}
-	i++;
+		i++;
 	}
 	return (NULL);
 }

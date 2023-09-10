@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 16:26:29 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/08/27 17:14:56 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/10 19:45:54 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	n_lines(int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-        if (ft_strncmp(line, "\n", 2))
-		    i++;
-        free(line);
-        line = get_next_line(fd);
+		if (ft_strncmp(line, "\n", 2))
+			i++;
+		free(line);
+		line = get_next_line(fd);
 	}
 	return (i);
 }
@@ -42,7 +42,7 @@ int	nospace_strlen(char *str)
 	{
 		if (str[i] != ' ')
 		{
-			size++;	
+			size++;
 			i++;
 		}
 		else
@@ -55,12 +55,13 @@ int	nospace_strlen(char *str)
 	}
 	return (size);
 }
-static char    *fill_res(int i, char *res, char *str)
-{
-    int j;
 
-    j = 0;
-    while (str[i])
+static char	*fill_res(int i, char *res, char *str)
+{
+	int	j;
+
+	j = 0;
+	while (str[i])
 	{
 		if (str[i] != ' ')
 		{
@@ -80,8 +81,9 @@ static char    *fill_res(int i, char *res, char *str)
 		}
 	}
 	res[j] = '\0';
-    return (res);
+	return (res);
 }
+
 char	*rm_space(char *str)
 {
 	char	*res;
@@ -92,20 +94,20 @@ char	*rm_space(char *str)
 	len = nospace_strlen(str);
 	i = 0;
 	j = 0;
-	res = malloc((len + 1)* sizeof(char));
+	res = malloc((len + 1) * sizeof(char));
 	while (str[i] && str[i] == ' ')
 		i++;
 	res = fill_res(i, res, str);
-	return(res);
+	return (res);
 }
 
 char	**read_file(char *file)
 {
-	int	fd;
-	int	i;
-	int	nl;
+	int		fd;
+	int		i;
+	int		nl;
 	char	**file_tab;
-    char    *hold;
+	char	*hold;
 
 	i = 0;
 	fd = open(file, O_RDONLY, 0777);
@@ -117,12 +119,11 @@ char	**read_file(char *file)
 	file_tab = malloc((nl + 1) * sizeof(char *));
 	while (i < nl)
 	{
-        hold = get_next_line(fd);
-        if (ft_strncmp(hold, "\n", 2))
-		    file_tab[i++] = rm_space(hold);
-        free(hold);
+		hold = get_next_line(fd);
+		if (ft_strncmp(hold, "\n", 2))
+			file_tab[i++] = rm_space(hold);
+		free(hold);
 	}
 	file_tab[i] = NULL;
 	return (file_tab);
 }
-

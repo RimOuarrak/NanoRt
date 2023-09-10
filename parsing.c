@@ -6,7 +6,7 @@
 /*   By: rimouarrak <rimouarrak@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 15:38:57 by rimouarrak        #+#    #+#             */
-/*   Updated: 2023/09/09 16:24:15 by rimouarrak       ###   ########.fr       */
+/*   Updated: 2023/09/10 19:46:36 by rimouarrak       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	fill_a(char	*str, t_scene *scene)
 {
 	char	**tab;
 	char	**rgb;
-	
+
 	tab = ft_split(str, ' ');
 	scene->a_light->ratio = str_to_double(tab[1]);
 	rgb = ft_split(tab[2], ',');
@@ -32,7 +32,7 @@ void	fill_c(char	*str, t_scene *scene)
 	char	**tab;
 	char	**pos;
 	char	**ort;
-	
+
 	tab = ft_split(str, ' ');
 	pos = ft_split(tab[1], ',');
 	scene->cameras->position.x = str_to_double(pos[0]);
@@ -53,7 +53,7 @@ void	fill_l(char	*str, t_scene *scene)
 	char	**tab;
 	char	**pos;
 	char	**rgb;
-	
+
 	tab = ft_split(str, ' ');
 	pos = ft_split(tab[1], ',');
 	scene->lights->position.x = str_to_double(pos[0]);
@@ -68,13 +68,13 @@ void	fill_l(char	*str, t_scene *scene)
 	free_split(rgb);
 	free_split(pos);
 }
+
 void	fill_pl(char	*str, t_scene *scene)
 {
 	t_plane	*plane;
 
 	plane = pl_new(str);
-	
-	if(!scene->planes->flag)
+	if (!scene->planes->flag)
 	{
 		scene->planes = plane;
 		// scene->planes->flag = 1;
@@ -88,8 +88,7 @@ void	fill_sp(char	*str, t_scene *scene)
 	t_sphere	*sphere;
 
 	sphere = sp_new(str);
-	
-	if(!scene->spheres->flag)
+	if (!scene->spheres->flag)
 	{
 		scene->spheres = sphere;
 		// scene->t_spheres->flag = 1;
@@ -103,8 +102,7 @@ void	fill_cy(char	*str, t_scene *scene)
 	t_cylinder	*cylinder;
 
 	cylinder = cy_new(str);
-	
-	if(!scene->cylinders->flag)
+	if (!scene->cylinders->flag)
 	{
 		scene->cylinders = cylinder;
 		// scene->t_cylinders->flag = 1;
@@ -121,20 +119,21 @@ void	fill_elm(char	**tab, t_scene *scene)
 	while (tab[i])
 	{
 		if (!ft_strncmp(tab[i], "A", 1))
-				fill_a(tab[i], scene);
+			fill_a(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "C", 1))
-				fill_c(tab[i], scene);
+			fill_c(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "L", 1))
-				fill_l(tab[i], scene);
+			fill_l(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "pl", 2))
-				fill_pl(tab[i], scene);
+			fill_pl(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "sp", 2))
-				fill_sp(tab[i], scene);
+			fill_sp(tab[i], scene);
 		else if (!ft_strncmp(tab[i], "cy", 2))
-				fill_cy(tab[i], scene);
+			fill_cy(tab[i], scene);
 		i++;
 	}
 }
+
 void	init_struct(t_scene *scene)
 {
 	scene->a_light = ft_calloc(1, sizeof(t_ambient_light));
@@ -145,13 +144,13 @@ void	init_struct(t_scene *scene)
 	scene->cylinders = ft_calloc(1, sizeof(t_cylinder));
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	char	**file_tab;
 	t_scene	*scene;
 
 	if (ac == 2)
-	{	
+	{
 		file_tab = read_file(av[1]);
 		if (!file_tab)
 		{
@@ -159,7 +158,7 @@ int main(int ac, char **av)
 			return (0);
 		}
 		supervisor(file_tab);
-		scene = ft_calloc(1 ,sizeof(t_scene));
+		scene = ft_calloc(1, sizeof(t_scene));
 		init_struct(scene);
 		fill_elm(file_tab, scene);
 		system("leaks nanort");
@@ -169,5 +168,5 @@ int main(int ac, char **av)
 		// printf("next ,, %d\n", scene->planes->next->color.r);
 		// printf("%p\n", scene->planes->next->next);
 	}
-    return(0);
+	return (0);
 }
